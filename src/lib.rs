@@ -1,14 +1,17 @@
-pub fn add(left: usize, right: usize) -> usize {
-    left + right
-}
+mod c3d_loader;
+pub use c3d_loader::*;
 
-#[cfg(test)]
-mod tests {
-    use super::*;
+use bevy::prelude::*;
 
-    #[test]
-    fn it_works() {
-        let result = add(2, 2);
-        assert_eq!(result, 4);
-    }
+#[derive(Default)]
+pub struct C3dPlugin;
+
+impl Plugin for C3dPlugin {
+    fn build(&self, app: &mut App) {
+        app.init_resource::<C3dState>()
+            .add_asset::<C3dAsset>()
+            .init_asset_loader::<C3dLoader>()
+            .add_event::<C3dLoadedEvent>()
+            .add_system(c3d_loaded)
+    ;}
 }
