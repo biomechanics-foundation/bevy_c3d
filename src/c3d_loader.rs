@@ -4,7 +4,7 @@ use bevy::{
     reflect::TypeUuid,
     utils::BoxedFuture,
 };
-use silico_c3d::prelude::*;
+use c3dio::C3d;
 
 #[derive(Default)]
 pub struct C3dLoader;

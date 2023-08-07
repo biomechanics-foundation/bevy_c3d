@@ -7,4 +7,4 @@ edition = "2021"
 
 [dependencies]
 bevy = "0.10"
-silico-c3d = { path = "../silico-c3d" }
+c3dio = { path = "../c3dio" }
