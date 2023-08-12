@@ -3,6 +3,12 @@ pub use c3d_loader::*;
 
 use bevy::prelude::*;
 
+pub mod prelude {
+    pub use crate::c3d_loader::*;
+}
+
+pub use prelude::*;
+
 #[derive(Default)]
 pub struct C3dPlugin;
 
@@ -12,6 +18,6 @@ impl Plugin for C3dPlugin {
             .add_asset::<C3dAsset>()
             .init_asset_loader::<C3dLoader>()
             .add_event::<C3dLoadedEvent>()
-            .add_system(c3d_loaded)
+            .add_systems(Update, c3d_loaded)
     ;}
 }

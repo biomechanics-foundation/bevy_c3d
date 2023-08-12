@@ -1,7 +1,7 @@
 use bevy::{
     asset::{AssetLoader, LoadContext, LoadedAsset},
     prelude::*,
-    reflect::TypeUuid,
+    reflect::{TypeUuid, TypePath},
     utils::BoxedFuture,
 };
 use c3dio::C3d;
@@ -49,13 +49,14 @@ pub struct C3dState {
 }
 
 
-#[derive(Debug, TypeUuid)]
+#[derive(Debug, TypeUuid, TypePath)]
+#[type_path = "bevy_c3d::c3d_loader::C3dAsset"]
 #[uuid = "39cadc56-aa9c-4543-8640-a018b74b5052"]
 pub struct C3dAsset {
     pub c3d: C3d,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Event)]
 pub struct C3dLoadedEvent;
 
 pub fn c3d_loaded(
