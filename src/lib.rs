@@ -5,6 +5,7 @@ use bevy::prelude::*;
 
 pub mod prelude {
     pub use crate::c3d_loader::*;
+    pub use c3dio::prelude::*;
 }
 
 pub use prelude::*;
