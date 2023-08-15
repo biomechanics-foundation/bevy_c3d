@@ -1,5 +1,5 @@
 [package]
-name = "bevy-c3d"
+name = "bevy_c3d"
 version = "0.1.0"
 edition = "2021"
 
