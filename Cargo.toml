@@ -1,6 +1,6 @@
 [package]
 name = "bevy_c3d"
-version = "0.1.0"
+version = "0.11.0"
 authors = ["Claire V. Hammond <claire@biomech.dev>"]
 edition = "2021"
 description = "A plugin for loading C3D files into Bevy"
