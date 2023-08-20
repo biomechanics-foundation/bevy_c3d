@@ -10,7 +10,7 @@ homepage = "https://biomech.dev/bevy_c3d"
 repository = "https://github.com/cvhammond/bevy_c3d"
 keywords = ["bevy", "c3d", "motion capture", "bevy-plugin", "biomechanics"]
 categories = ["game-development", "data-structures", "graphics", "mathematics", "science"]
-exclude = ["tests", "tests/*", "examples", "examples/*"]
+exclude = ["tests", "tests/*", "examples", "examples/*", "assets", "assets/*"]
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
