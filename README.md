@@ -14,7 +14,7 @@ cargo add bevy_c3d
 
 or add it to your `Cargo.toml`
 
-```
+```toml
 [dependencies]
 bevy = "0.11"
 bevy_c3d = "0.11"
@@ -24,7 +24,7 @@ The major and minor versions should match Bevy
 
 2. Add the plugin:
 
-```
+```rust
 use bevy::prelude::*;
 use bevy_c3d::*;
 
@@ -37,7 +37,7 @@ fn main() {
 
 3. Load the `.c3d` file as an asset:
 
-```
+```rust
 fn example_load_c3d(asset_server: Res<AssetServer>, mut c3d_state: ResMut<C3dState>) {
     c3d_state.handle = asset_server.load("test.c3d");
 }
