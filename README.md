@@ -2,7 +2,7 @@
 
 ![Crates.io](https://img.shields.io/crates/v/bevy_c3d.svg)
 
-A .c3d asset loader plugin for the Bevy engine
+A .c3d asset loader plugin for the [Bevy engine](https://github.com/bevyengine/bevy)
 
 ## Usage
 
