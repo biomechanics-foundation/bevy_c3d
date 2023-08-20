@@ -8,7 +8,7 @@ readme = "README.md"
 license = "MIT OR Apache-2.0"
 homepage = "https://biomech.dev/bevy_c3d"
 repository = "https://github.com/cvhammond/bevy_c3d"
-keywords = ["bevy", "c3d", "motion capture", "bevy-plugin", "biomechanics"]
+keywords = ["bevy", "c3d", "motion-capture", "bevy-plugin", "biomechanics"]
 categories = ["game-development", "data-structures", "graphics", "mathematics", "science"]
 exclude = ["tests", "tests/*", "examples", "examples/*", "assets", "assets/*"]
 
