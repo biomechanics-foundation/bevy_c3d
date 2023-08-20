@@ -20,6 +20,8 @@ bevy = "0.11"
 bevy_c3d = "0.11"
 ```
 
+The major and minor versions should match Bevy
+
 2. Add the plugin:
 
 ```
