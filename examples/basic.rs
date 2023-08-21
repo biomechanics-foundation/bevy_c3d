@@ -97,7 +97,7 @@ fn markers(
 }
 
 fn setup(mut commands: Commands, asset_server: Res<AssetServer>, mut c3d_state: ResMut<C3dState>) {
-    c3d_state.handle = asset_server.load("test.c3d");
+    c3d_state.handle = asset_server.load("walk.c3d");
 
     // Spawn a light and the camera
     commands.spawn(PointLightBundle {
@@ -238,7 +238,7 @@ fn get_primary_window_size(window: &Window) -> Vec2 {
 
 /// Spawn a camera like this
 pub fn spawn_camera(mut commands: Commands) {
-    let translation = Vec3::new(-2.0, 2.5, 5.0);
+    let translation = Vec3::new(0., -3.5, 1.0);
     let radius = translation.length();
 
     commands.spawn((
@@ -247,7 +247,7 @@ pub fn spawn_camera(mut commands: Commands) {
                 clear_color: ClearColorConfig::Custom(Color::rgb(0.8, 0.8, 0.8)),
                 ..Default::default()
             },
-            transform: Transform::from_translation(translation).looking_at(Vec3::ZERO, Vec3::Y),
+            transform: Transform::from_translation(translation).looking_at(Vec3::new(0., 0., 1.), Vec3::Z),
             ..Default::default()
         },
         PanOrbitCamera {
