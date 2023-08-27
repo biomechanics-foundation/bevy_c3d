@@ -43,7 +43,11 @@ fn example_load_c3d(asset_server: Res<AssetServer>, mut c3d_state: ResMut<C3dSta
 }
 ```
 
+## Example
+
 A full example is available at `examples/basic.rs`.
+
+Clone this repository and use the command `cargo run --example basic` to run the example.
 
 ## Support
 
