@@ -1,21 +1,32 @@
-use bevy::{
-    asset::{AssetLoader, LoadContext, LoadedAsset},
-    prelude::*,
-    reflect::{TypeUuid, TypePath},
-    utils::BoxedFuture,
+use bevy_asset::{
+    io::Reader, Asset, AssetLoader, Assets, AsyncReadExt, BoxedFuture, Handle, LoadContext,
 };
-use c3dio::C3d;
+use bevy_ecs::prelude::{Event, EventWriter, ResMut, Resource};
+use bevy_reflect::{TypePath, TypeUuid};
+use c3dio::{C3d, C3dParseError};
 
 #[derive(Default)]
 pub struct C3dLoader;
 
 impl AssetLoader for C3dLoader {
+    type Asset = C3dAsset;
+    type Settings = ();
+    type Error = C3dParseError;
+
     fn load<'a>(
         &'a self,
-        bytes: &'a [u8],
+        reader: &'a mut Reader,
+        _settings: &'a Self::Settings,
         load_context: &'a mut LoadContext,
-        ) -> BoxedFuture<'a, Result<(), bevy::asset::Error>> {
-        Box::pin(async move { Ok(load_c3d(bytes, load_context).await?) })
+    ) -> BoxedFuture<'a, Result<C3dAsset, C3dParseError>> {
+        Box::pin(async move {
+            let mut bytes = Vec::new();
+            let res = reader.read_to_end(&mut bytes).await;
+            if let Err(err) = res {
+                return Err(C3dParseError::ReadError(err));
+            }
+            load_c3d(bytes.as_slice(), load_context).await
+        })
     }
 
     fn extensions(&self) -> &[&str] {
@@ -26,20 +37,16 @@ impl AssetLoader for C3dLoader {
 
 async fn load_c3d<'a, 'b>(
     bytes: &'a [u8],
-    load_context: &'a mut LoadContext<'b>,
-    ) -> Result<(), bevy::asset::Error> {
+    _load_context: &'a mut LoadContext<'b>,
+) -> Result<C3dAsset, C3dParseError> {
     let c3d = C3d::from_bytes(bytes);
     let c3d = match c3d {
         Ok(c3d) => c3d,
-        Err(_) => {
-            return Err(bevy::asset::Error::msg(
-                    "Failed to parse C3D file".to_string(),
-                    ));
+        Err(err) => {
+            return Err(err);
         }
     };
-    let c3d_asset = C3dAsset { c3d };
-    load_context.set_default_asset(LoadedAsset::new(c3d_asset));
-    Ok(())
+    Ok(C3dAsset { c3d })
 }
 
 #[derive(Resource, Default, Debug)]
@@ -48,8 +55,7 @@ pub struct C3dState {
     pub loaded: bool,
 }
 
-
-#[derive(Debug, TypeUuid, TypePath)]
+#[derive(Debug, TypeUuid, TypePath, Asset)]
 #[type_path = "bevy_c3d::c3d_loader::C3dAsset"]
 #[uuid = "39cadc56-aa9c-4543-8640-a018b74b5052"]
 pub struct C3dAsset {

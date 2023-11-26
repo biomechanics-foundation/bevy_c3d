@@ -16,8 +16,8 @@ or add it to your `Cargo.toml`
 
 ```toml
 [dependencies]
-bevy = "0.11"
-bevy_c3d = "0.11"
+bevy = "0.12"
+bevy_c3d = "0.12"
 ```
 
 The major and minor versions should match Bevy
@@ -51,6 +51,8 @@ Clone this repository and use the command `cargo run --example basic` to run the
 
 ## Support
 
-bevy_c3d is part of the [biomech.dev](https://biomech.dev) family of open-source libraries. Consider supporting our work to help us contribute more to the body of biomechanics software.
+`bevy_c3d` is a stand-alone crate used in [Chiron](https://chiron.rs), an open-source biomechanics simulation and modeling package supported by the Biomechanics Foundation.
+
+Consider supporting our work to help us contribute more to the body of biomechanics software.
 
 

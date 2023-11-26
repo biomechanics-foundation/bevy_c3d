@@ -26,11 +26,11 @@ fn load_c3d(
     mut materials: ResMut<Assets<StandardMaterial>>,
     mut commands: Commands,
 ) {
-    if let Some(_) = events.iter().last() {
+    if let Some(_) = events.read().last() {
         let asset = c3d_assets.get(&c3d_state.handle);
         match asset {
             Some(asset) => {
-                for _ in 0..asset.c3d.parameters.point.labels.len() {
+                for _ in 0..asset.c3d.points.labels.len() {
                     let matrix = Mat4::from_scale_rotation_translation(
                         Vec3::new(1.0, 1.0, 1.0),
                         Quat::from_rotation_y(0.0),
@@ -73,8 +73,8 @@ fn markers(
     let asset = c3d_assets.get(&c3d_state.handle);
     match asset {
         Some(asset) => {
-            let point_data = &asset.c3d.data.points;
-            let num_frames = point_data.shape().0;
+            let point_data = &asset.c3d.points;
+            let num_frames = point_data.size().0;
             let mut i = 0;
             for (mut transform, _) in query.iter_mut() {
                 transform.translation = Vec3::new(
