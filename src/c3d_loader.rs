@@ -51,6 +51,7 @@ async fn load_c3d<'a, 'b>(
 
 #[derive(Resource, Default, Debug)]
 pub struct C3dState {
+    pub path: String,
     pub handle: Handle<C3dAsset>,
     pub loaded: bool,
 }
