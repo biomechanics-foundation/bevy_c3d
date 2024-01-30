@@ -1,13 +1,13 @@
 [package]
 name = "bevy_c3d"
-version = "0.12.1"
+version = "0.12.2"
 authors = ["Claire V. Hammond <me@cvhammond.com>"]
 edition = "2021"
 description = "A plugin for loading C3D motion capture files into Bevy"
 readme = "README.md"
 license = "MIT OR Apache-2.0"
 homepage = "https://chiron.rs/bevy_c3d"
-repository = "https://github.com/cvhammond/bevy_c3d"
+repository = "https://github.com/biomechanics-foundation/bevy_c3d"
 keywords = ["bevy", "c3d", "motion-capture", "bevy-plugin", "biomechanics"]
 categories = ["game-development", "multimedia::encoding", "graphics", "rendering::data-formats", "science::robotics"]
 exclude = ["tests", "tests/*", "examples", "examples/*", "assets", "assets/*"]
@@ -23,7 +23,7 @@ bevy_utils = "0.12"
 bevy_ecs = "0.12"
 bevy_scene = { version = "0.12", optional = true}
 bevy_pbr = { version = "0.12", optional = true}
-c3dio = "0.6.1"
+c3dio = "0.7.0"
 
 [dev-dependencies]
 bevy = "0.12"

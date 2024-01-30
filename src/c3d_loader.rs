@@ -5,6 +5,7 @@ use bevy_ecs::prelude::{Event, EventWriter, ResMut, Resource};
 use bevy_reflect::{TypePath, TypeUuid};
 use c3dio::{C3d, C3dParseError};
 
+/// Loader for C3D files
 #[derive(Default)]
 pub struct C3dLoader;
 
@@ -13,6 +14,8 @@ impl AssetLoader for C3dLoader {
     type Settings = ();
     type Error = C3dParseError;
 
+    /// The most convenient way to load C3D files is to read the entire file into memory
+    /// and then parse it.
     fn load<'a>(
         &'a self,
         reader: &'a mut Reader,
@@ -29,6 +32,8 @@ impl AssetLoader for C3dLoader {
         })
     }
 
+    /// C3D files have the extension "c3d"
+    /// TODO: Ensure files that end in ".C3D" are also accepted
     fn extensions(&self) -> &[&str] {
         static EXTENSIONS: &[&str] = &["c3d"];
         EXTENSIONS
@@ -49,6 +54,8 @@ async fn load_c3d<'a, 'b>(
     Ok(C3dAsset { c3d })
 }
 
+/// State for loading C3D files
+/// Includes the path to the file, the handle to the asset, and whether the file has been loaded
 #[derive(Resource, Default, Debug)]
 pub struct C3dState {
     pub path: String,
@@ -56,6 +63,9 @@ pub struct C3dState {
     pub loaded: bool,
 }
 
+/// Asset for C3D files
+/// This is a wrapper around the C3D struct
+/// It is required because Bevy's system needs a uuid to work with
 #[derive(Debug, TypeUuid, TypePath, Asset)]
 #[type_path = "bevy_c3d::c3d_loader::C3dAsset"]
 #[uuid = "39cadc56-aa9c-4543-8640-a018b74b5052"]
@@ -63,6 +73,7 @@ pub struct C3dAsset {
     pub c3d: C3d,
 }
 
+/// Event that is sent when a C3D file is loaded
 #[derive(Debug, Event)]
 pub struct C3dLoadedEvent;
 
