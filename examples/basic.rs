@@ -1,4 +1,3 @@
-use bevy::core_pipeline::clear_color::ClearColorConfig;
 use bevy::prelude::*;
 use bevy_c3d::*;
 
@@ -39,11 +38,7 @@ fn load_c3d(
                     commands.spawn((
                         PbrBundle {
                             mesh: meshes.add(
-                                shape::UVSphere {
-                                    radius: 0.014,
-                                    ..default()
-                                }
-                                .into(),
+                                Sphere::new(0.014).mesh(),
                             ),
                             material: materials.add(StandardMaterial {
                                 base_color: Color::rgb_u8(0, 0, 127),
@@ -113,14 +108,13 @@ fn setup(mut commands: Commands, asset_server: Res<AssetServer>, mut c3d_state: 
 pub fn spawn_camera(mut commands: Commands) {
     let translation = Vec3::new(0., -3.5, 1.0);
 
-    commands.spawn((
-        Camera3dBundle {
-            camera_3d: Camera3d {
-                clear_color: ClearColorConfig::Custom(Color::rgb(0.8, 0.8, 0.8)),
-                ..Default::default()
-            },
-            transform: Transform::from_translation(translation).looking_at(Vec3::new(0., 0., 1.), Vec3::Z),
+    commands.spawn((Camera3dBundle {
+        camera: Camera {
+            clear_color: Color::rgb(0.8, 0.8, 0.8).into(),
             ..Default::default()
         },
-    ));
+        transform: Transform::from_translation(translation)
+            .looking_at(Vec3::new(0., 0., 1.), Vec3::Z),
+        ..Default::default()
+    },));
 }

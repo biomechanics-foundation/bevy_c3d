@@ -2,7 +2,7 @@ use bevy_asset::{
     io::Reader, Asset, AssetLoader, Assets, AsyncReadExt, BoxedFuture, Handle, LoadContext,
 };
 use bevy_ecs::prelude::{Event, EventWriter, ResMut, Resource};
-use bevy_reflect::{TypePath, TypeUuid};
+use bevy_reflect::TypePath;
 use c3dio::{C3d, C3dParseError};
 
 /// Loader for C3D files
@@ -65,10 +65,9 @@ pub struct C3dState {
 
 /// Asset for C3D files
 /// This is a wrapper around the C3D struct
-/// It is required because Bevy's system needs a uuid to work with
-#[derive(Debug, TypeUuid, TypePath, Asset)]
+/// It is required because Bevy's system needs a type path to work with
+#[derive(Debug, TypePath, Asset)]
 #[type_path = "bevy_c3d::c3d_loader::C3dAsset"]
-#[uuid = "39cadc56-aa9c-4543-8640-a018b74b5052"]
 pub struct C3dAsset {
     pub c3d: C3d,
 }

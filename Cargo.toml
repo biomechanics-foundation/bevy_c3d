@@ -1,6 +1,6 @@
 [package]
 name = "bevy_c3d"
-version = "0.12.2"
+version = "0.13.0"
 authors = ["Claire V. Hammond <me@cvhammond.com>"]
 edition = "2021"
 description = "A plugin for loading C3D motion capture files into Bevy"
@@ -15,18 +15,18 @@ exclude = ["tests", "tests/*", "examples", "examples/*", "assets", "assets/*"]
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-bevy_app = "0.12"
-bevy_asset = "0.12"
-bevy_render = "0.12"
-bevy_reflect = "0.12"
-bevy_utils = "0.12"
-bevy_ecs = "0.12"
-bevy_scene = { version = "0.12", optional = true}
-bevy_pbr = { version = "0.12", optional = true}
+bevy_app = "0.13"
+bevy_asset = "0.13"
+bevy_render = "0.13"
+bevy_reflect = "0.13"
+bevy_utils = "0.13"
+bevy_ecs = "0.13"
+bevy_scene = { version = "0.13", optional = true}
+bevy_pbr = { version = "0.13", optional = true}
 c3dio = "0.7.0"
 
 [dev-dependencies]
-bevy = "0.12"
+bevy = "0.13"
 
 [[example]]
 name = "basic"
