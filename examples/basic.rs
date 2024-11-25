@@ -41,7 +41,7 @@ fn load_c3d(
                                 Sphere::new(0.014).mesh(),
                             ),
                             material: materials.add(StandardMaterial {
-                                base_color: Color::rgb_u8(0, 0, 127),
+                                base_color: Color::srgb_u8(0, 0, 127),
                                 ..default()
                             }),
                             transform: Transform::from_matrix(matrix),
@@ -110,7 +110,7 @@ pub fn spawn_camera(mut commands: Commands) {
 
     commands.spawn((Camera3dBundle {
         camera: Camera {
-            clear_color: Color::rgb(0.8, 0.8, 0.8).into(),
+            clear_color: Color::srgb(0.8, 0.8, 0.8).into(),
             ..Default::default()
         },
         transform: Transform::from_translation(translation)

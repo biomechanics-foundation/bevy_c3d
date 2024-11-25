@@ -1,8 +1,9 @@
 use bevy_asset::{
-    io::Reader, Asset, AssetLoader, Assets, AsyncReadExt, BoxedFuture, Handle, LoadContext,
+    io::Reader, Asset, AssetLoader, Assets, AsyncReadExt, Handle, LoadContext,
 };
 use bevy_ecs::prelude::{Event, EventWriter, ResMut, Resource};
 use bevy_reflect::TypePath;
+use bevy_utils::BoxedFuture;
 use c3dio::{C3d, C3dParseError};
 
 /// Loader for C3D files
