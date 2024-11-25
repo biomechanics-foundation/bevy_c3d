@@ -1,9 +1,11 @@
+use std::future::Future;
+
 use bevy_asset::{
     io::Reader, Asset, AssetLoader, Assets, AsyncReadExt, Handle, LoadContext,
 };
 use bevy_ecs::prelude::{Event, EventWriter, ResMut, Resource};
 use bevy_reflect::TypePath;
-use bevy_utils::BoxedFuture;
+use bevy_utils::ConditionalSendFuture;
 use c3dio::{C3d, C3dParseError};
 
 /// Loader for C3D files
@@ -22,7 +24,7 @@ impl AssetLoader for C3dLoader {
         reader: &'a mut Reader,
         _settings: &'a Self::Settings,
         load_context: &'a mut LoadContext,
-    ) -> BoxedFuture<'a, Result<C3dAsset, C3dParseError>> {
+    ) -> impl ConditionalSendFuture + Future<Output = Result<<Self as AssetLoader>::Asset, <Self as AssetLoader>::Error>> {
         Box::pin(async move {
             let mut bytes = Vec::new();
             let res = reader.read_to_end(&mut bytes).await;
